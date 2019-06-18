@@ -1,6 +1,6 @@
 <template lang='html'>
     <form class="form" @submit.prevent="addNewUser()">
-        <h2 class="heading--charlie">Add a potential tea maker</h2>
+        <h2 class="heading--charlie landmark">Add a potential tea maker</h2>
 
         <div class="form__input-container form__input-container--column form__input-container--required" :class="{'form__input-container--error': error}">
             <label for="name" class="form__label">Tea Maker</label>
@@ -46,6 +46,12 @@
 </script>
 
 <style lang='scss' scoped>
+    .form {
+        @include mq($until: medium) {
+            margin-bottom: $spacing-unit;
+        }
+    }
+
     .form__err-message {
         .form__input-container--error & { display: block; }
     }

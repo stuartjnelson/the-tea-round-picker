@@ -1,6 +1,6 @@
 <template lang='html'>
-    <div class="band">
-        <h2 class="heading--charlie">Tea Makers</h2>
+    <div>
+        <h2 class="heading--charlie landmark">Tea Makers</h2>
 
         <ul class="users-list" v-if="users">
             <li class="users-list__item" v-for="(user, index) in users" :key="index">

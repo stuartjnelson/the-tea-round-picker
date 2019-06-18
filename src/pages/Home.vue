@@ -1,5 +1,5 @@
 <template>
-    <section class="band">
+    <section class="tea-maker">
         <app-form></app-form>
 
         <app-spinner :users="users"></app-spinner>
@@ -29,4 +29,17 @@
 </script>
 
 <style lang="scss" scoped>
+    .tea-maker {
+        @include band;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-bottom: $spacing-unit;
+
+        @include mq(medium) {
+            flex-direction: row;
+            margin: 0 auto;
+            max-width: 700px;
+        }
+    }
 </style>
