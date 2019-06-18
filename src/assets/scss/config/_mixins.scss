@@ -548,12 +548,11 @@
     @include wf-primary;
     background-color: get-color($bgColor);
     border: 5px solid get-color($bgColor);
-    border-radius: 0;
+    border-radius: 6px;
     color: get-color($color);
     display: inline-block;
     padding: 15px $half-spacing-unit;
     text-decoration: none;
-    text-transform: uppercase;
     transition: background-color ease-in-out 0.15s, color ease-in-out 0.15s;
 
     &:focus {
