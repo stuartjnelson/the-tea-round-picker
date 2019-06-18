@@ -14,11 +14,6 @@ export default new Router({
             component: Home,
         },
         {
-            path: '/page',
-            name: 'page',
-            component: () => import(/* webpackChunkName: "page" */ './pages/Page.vue'),
-        },
-        {
             path: '*',
             name: '404',
             component: () => import(/* webpackChunkName: "result" */ './pages/404.vue'),

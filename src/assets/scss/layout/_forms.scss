@@ -165,6 +165,7 @@ fieldset { padding: 0; }
 
 .form__input {
     @include form-input;
+    margin-bottom: $half-spacing-unit;
 
     &:not(&--submit) { flex-grow: 1; }
 
@@ -173,6 +174,7 @@ fieldset { padding: 0; }
         @include get-bgc(primary);
         @include wf-primary;
         border: solid 3px get-color(primary);
+        border-radius: 6px;
         max-width: fit-content;
         padding: 0.85rem 1.25rem;
         transition: background ease-in-out $transition-length;

@@ -14,9 +14,9 @@ $px-in-rem: 16;
 // ==========================================================================
 $brand-colors: (
     primary:   (
-        light:   lighten(#ed1163, 10%),
-        default: #ed1163,
-        dark:    darken(#ed1163, 10%)
+        light:   lighten(#e5aa26, 10%),
+        default: #e5aa26,
+        dark:    darken(#e5aa26, 10%)
     ),
     secondary: (
         default: #5cc9e0
@@ -33,7 +33,7 @@ $brand-colors: (
     ),
     grey:      (
         light:   #bcc3c5,
-        default: #99a5ab,
+        default: #585858,
         dark:    #677982
     ),
     off-white:  (
@@ -47,6 +47,9 @@ $brand-colors: (
     ),
     error:  (
         default: #ff0000
+    ),
+    success:  (
+        default: #2ecc71
     )
 );
 
