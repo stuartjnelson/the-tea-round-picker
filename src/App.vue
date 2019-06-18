@@ -67,6 +67,7 @@
                 //    created and add 1. The reason being it keeps each users ID unique.
                 const id = (numberUsers === 0 ? 0 : this.users[numberUsers - 1].id + 1);
 
+                // 2. Adding user to users array
                 this.users.push({
                     id,
                     name: userName
@@ -76,6 +77,11 @@
 
             EventBus.$on('removeUser', userId => {
                 this.users = this.users.filter(user => user.id !== userId);
+            });
+
+
+            EventBus.$on('chooseTeaMaker', userId => {
+                this.teaMaker = this.users.find(user => user.id === userId);
             });
         }
     };

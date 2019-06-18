@@ -1,5 +1,7 @@
 <template lang='html'>
     <div class="band">
+        <h2 class="heading--charlie">Tea Makers</h2>
+
         <ul class="users-list" v-if="users">
             <li class="users-list__item" v-for="(user, index) in users" :key="index">
                 {{ user.name }}
@@ -7,6 +9,8 @@
                 <button class="users__remove-btn" @click="removeUser(user.id)">Remove</button>
             </li>
         </ul>
+
+        <button class="btn btn--secondary" @click="chooseTeaMaker()">Choose Tea Maker</button>
     </div>
 </template>
 
@@ -23,6 +27,16 @@
         methods: {
             removeUser(userId) {
                 EventBus.$emit('removeUser', userId);
+            },
+            chooseTeaMaker() {
+                // 1. Getting all ids for users
+                const userIds = this.users.map(user => user.id);
+
+                // 2. Randomly selecting an ID
+                const teaMakerId = userIds[Math.floor(Math.random() * userIds.length)];
+
+                // 3. Emiting event to be user in `App.vue`
+                EventBus.$emit('chooseTeaMaker', teaMakerId);
             }
         }
     };
@@ -35,7 +49,10 @@
         100% { opacity: 1; }
     }
 
-    .users-list { @include inline-list($half-spacing-unit); }
+    .users-list {
+        @include inline-list($half-spacing-unit);
+        margin-bottom: $half-spacing-unit;
+    }
 
     .users-list__item { animation: fade-in 1 forwards linear 0.2s; }
 
