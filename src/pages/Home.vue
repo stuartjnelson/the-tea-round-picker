@@ -1,22 +1,32 @@
 <template>
-    <section class="band band--off-white">
-        <div class="homepage">
-            <header>
-                <h1 class="heading--alpha heading--center">Ready Vue Boilerplate</h1>
-            </header>
-        </div>
+    <section class="band">
+        <app-form></app-form>
+
+        <app-spinner :users="users"></app-spinner>
     </section>
 </template>
 
 <script>
+    import Form from '@/components/tea-round/form.vue';
+    import Spinner from '@/components/tea-round/spinner.vue';
+
+
     export default {
+        props: {
+            users: {
+                required: true,
+                type: Array
+            },
+            teaMaker: {
+                type: Object
+            }
+        },
+        components: {
+            appForm: Form,
+            appSpinner: Spinner
+        }
     };
 </script>
 
 <style lang="scss" scoped>
-    .homepage {
-        @include container;
-        @include flex-col(center, center);
-        min-height: 50vh;
-    }
 </style>
