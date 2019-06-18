@@ -551,7 +551,7 @@
     border-radius: 6px;
     color: get-color($color);
     display: inline-block;
-    padding: 15px $half-spacing-unit;
+    padding: $quarter-spacing-unit $half-spacing-unit;
     text-decoration: none;
     transition: background-color ease-in-out 0.15s, color ease-in-out 0.15s;
 
