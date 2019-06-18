@@ -1,0 +1,78 @@
+// ==========================================================================
+//
+// EXAMPLE COMPONENT
+//
+// Description: Describe your component here
+//
+//
+// Many of the rules for our style of commening come from
+// [cssguidelines](https://cssguidelin.es) please refer to this site if you
+// are ever unsure. Having a style like this for the Ready team is an on-going
+// process. If you ever have ways to imrpove this please present them to the
+// team!
+//
+// ==========================================================================
+
+// ==========================================================================
+// # BASE
+// ==========================================================================
+
+// This is where the base styles for this component should live
+
+.example-component {
+    // 1. Including mixins
+    @include get-color(grey);
+    // 2. Mobile styles
+    display: flex;
+    position: relative;
+
+    // 3. Any pseudo classes
+    &:focus { outline: solid 2px get-color(primary); }
+
+    // 4. Any pseudo classes
+    &::after {
+        content: "Test";
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    // 6. Media queries for the selector
+    @include mq(nav-break-1) {
+        @include flex-col(flex-start, flex-start);
+
+        &::after {
+            height: 50%;
+            width: 50%;
+        }
+    }
+
+    // Leave 1 empty line for closely releated rules
+}
+
+.example-component__inner {
+    @include container;
+    @include landmark;
+    // Leave 2 empty line for loosly releated rules. This
+    // is _very_ subjective. 1 empty is normally sufficent
+    // for us.
+}
+
+
+// If there is only one rule for a selector then it should only be on 1 line
+.example-component__heading { @include heading(bravo); }
+
+// Leave 5 empty lines at the end of a section
+
+
+
+
+
+// ==========================================================================
+// # MODIFIER: %%MODIFIER_NAME%%
+// ==========================================================================
+
+// Modifer sections are varitions on the main component
+.example-component--primary { @include get-color; }

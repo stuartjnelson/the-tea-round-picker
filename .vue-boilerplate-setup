@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Creating vue project using Vue CLI in the current directory 
+vue create --preset bash-script-scaffolding/.vue-cli-template.json .
+# vue create --preset bash-script-scaffolding/.vue-cli-template.json testing-vue-boierplate
+
+# Replace default Vue config file & Readme
+mv bash-script-scaffolding/.vue.config.js vue.config.js && mv bash-script-scaffolding/README.md ./README.md && mv bash-script-scaffolding/CHANGELOG.md ./CHANGELOG.md
+
+# Install dependancies. All devDependancies is handled by Vue CLI using the `plugins` object from `.vue-cli-template.json`
+yarn add vue-analytics lazysizes fontfaceobserver
+
+# 1. Clone down frontend boilerplate. Currently from `feature/webwpack` branch
+git clone --depth=1 git@bitbucket.org:ReadyProjects/ready-frontend-boilerplate.git
+
+# 2. Delete the .git, .gitignore & index.html & config files from FEB
+cd ready-frontend-boilerplate && rm -rf .git .gitignore index.html .babelrc .browserslistrc yarn.lock package.json
+
+# 3. Move Frontent Boilerplate README.md and CHANGELOG.md into assets directory
+cd ../ && mv ready-frontend-boilerplate/README.md ready-frontend-boilerplate/assets/README.md && mv ready-frontend-boilerplate/CHANGELOG.md ready-frontend-boilerplate/assets/CHANGELOG.md
+
+# 4. Moving all contents of of `/assets` Frontent Boilerplate
+mv -v ready-frontend-boilerplate/assets/* ./src/assets
+
+# 5. Deleting FEB eslint setup. Copying config files from FEB
+rm -rf ready-frontend-boilerplate/.eslintrc.js ready-frontend-boilerplate/.eslintignore && mv -v ready-frontend-boilerplate/.[!.]* ./
+
+# 7. Deleting the now empty Frontent Boilerplate dir
+rm -rf ready-frontend-boilerplate
+
+# #. Copying Vue ESlint config files
+mv -v bash-script-scaffolding/.eslintrc.js ./ && mv -v bash-script-scaffolding/.eslintignore ./
+
+# Delete default pages, components and app.vue
+cd src && rm -rf App.vue ./views ./components router.js main.js && cd ../
+
+# Copy our Vue components, pages, router.js, event-bus.js main.js
+mv -v ready-vue-files/* ./src
+
+# Removing setup files
+# rm -rf .vue-boilerplate-setup bash-script-scaffolding ready-vue-files
+
+# Run new vue project
+yarn serve

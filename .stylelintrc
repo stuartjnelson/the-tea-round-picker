@@ -1,0 +1,82 @@
+{
+  # "extends": "stylelint-config-standard",
+  "plugins": [
+    "stylelint-scss",
+    "stylelint-selector-no-empty",
+    "stylelint-z-index-value-constraint",
+    "stylelint-order"
+  ],
+  "rules": {
+    "color-no-invalid-hex": true,
+    "keyframe-declaration-no-important": true,
+    "property-no-unknown": true,
+    "string-no-newline": true,
+    "unit-no-unknown": true,
+
+    #"selector-class-pattern": "^([a-z][a-z0-9]*)(-[a-z0-9]+)*$",
+    "selector-max-id": 0,
+    "selector-pseudo-class-no-unknown": true,
+    "selector-pseudo-element-no-unknown": true,
+
+    "comment-no-empty": true,
+
+    "color-hex-length": "long",
+    "color-hex-case": "lower",
+
+    "no-duplicate-at-import-rules": true,
+    "no-duplicate-selectors": true,
+    "no-descending-specificity": null,
+    "no-extra-semicolons": true,
+
+    "function-calc-no-unspaced-operator": true,
+    "function-comma-newline-after": "never-multi-line",
+    "function-comma-space-after": "always-single-line",
+    "function-name-case": "lower",
+    "function-parentheses-space-inside": "never",
+    "function-url-quotes": "always",
+
+    "declaration-colon-space-after": "always-single-line",
+    "declaration-block-semicolon-space-before": "never",
+    "declaration-block-single-line-max-declarations": 1,
+    "declaration-block-trailing-semicolon": "always",
+    "declaration-empty-line-before": null,
+
+    "block-closing-brace-newline-after": ["always", {
+        "ignoreAtRules": ["if", "else"]
+    }],
+    "block-opening-brace-space-before": "always",
+    "block-opening-brace-space-after": "always-single-line",
+    "block-no-empty": true,
+
+    # Tricky rule so I've gone for all out shit config of the rule
+    "at-rule-empty-line-before": ["always", {
+        "ignore": "after-comment",
+        "ignoreAtRules": ["include", "return", "for", "each", "mixin", "if", "else", "warn"]
+    }],
+    "at-rule-no-unknown": null,
+
+    # "rule-empty-line-before": "always",
+    "indentation": 4,
+    "max-empty-lines": 5,
+    "max-nesting-depth": [3, {
+        "ignoreAtRules": ["/^my-/", "include"]
+    }],
+    "no-eol-whitespace": true,
+
+    "scss/at-mixin-argumentless-call-parentheses": "never",
+    "scss/at-mixin-parentheses-space-before": "never",
+    "scss/at-rule-no-unknown": true,
+    "scss/dollar-variable-colon-space-after": "always",
+    "scss/selector-no-redundant-nesting-selector": true,
+    # "scss/no-duplicate-dollar-variables": true,
+
+    #"plugin/stylelint-selector-no-empty": true,
+
+    "plugin/z-index-value-constraint": {
+      "min": 1000,
+      "max": 5000
+    },
+
+    "order/properties-alphabetical-order": true,
+  }
+}

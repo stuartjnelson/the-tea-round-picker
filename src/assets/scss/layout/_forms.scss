@@ -1,0 +1,390 @@
+// ==========================================================================
+//
+// FORMS
+//
+// Description: Base form styles
+//
+// ==========================================================================
+// ==========================================================================
+// # VARIABLES & MIXINS
+// ==========================================================================
+
+$outline-color: get-color(black, light);
+$outline-size: 2px;
+
+
+@mixin input-size {
+    display: flex;
+    max-width: 240px;
+    width: 100%;
+}
+
+@mixin form-input {
+    @include base-border;
+    @include input-size;
+    padding: $quarter-spacing-unit;
+
+    &:focus { @include active-input; }
+}
+
+
+@mixin active-input() {
+    outline: solid $outline-size $outline-color;
+}
+
+
+@mixin input-error {
+    // .form__label { @include get-color(error); }
+    .form__input { border: solid $outline-size get-color(error); }
+}
+
+@mixin input-dob-error {
+    .form-dob__input { border: solid $outline-size get-color(error); }
+}
+
+@mixin remove-number-arrows {
+    /* Hide HTML5 Up and Down arrows. */
+    input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
+}
+
+@mixin custom-form-element-outline($color: $outline-color, $other-color: get-color(white), $size: $outline-size) {
+    box-shadow: 0 0 0 $size $other-color, 0 0 0 ($size * 2) $color;
+}
+
+
+
+
+
+// ==========================================================================
+// # RESET
+// ==========================================================================
+
+fieldset { padding: 0; }
+
+
+
+
+
+// ==========================================================================
+// # BASE
+// ==========================================================================
+
+// .form {}
+
+.form__inner {
+    &--reduced {
+        margin: $half-spacing-unit auto 0;
+        max-width: 360px;
+    }
+}
+
+// An element that wraps each input
+.form__input-container {
+    display: flex;
+    flex-direction: column;
+
+    &:not(:last-of-type) { margin-bottom: $half-spacing-unit; }
+
+    @include mq(small) {
+        align-items: center;
+        flex-direction: row;
+    }
+
+    // A row across all viewports
+    &--row {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    // A column across all viewports
+    &--column {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    // @TODO: Review this as bit shit... Useage is to center
+    //        the submit input
+    &--center[class] { justify-content: center; }
+
+    // &--select { @include custom-select; }
+
+    &--error { @include input-error;
+
+        + .form__err-message { display: block; }
+    }
+
+    &--message {
+        > .form-success.form__err-message {
+            color: get-color(tertiary);
+            display: block;
+        }
+        > .form-warning.form__err-message {
+            color: get-color(error);
+            display: block;
+        }
+    }
+
+    &--required {
+        .form__label {
+            &::after {
+                @include get-color(error);
+                content: '*';
+                display: inline-block;
+                position: relative;
+                top: -4px;
+            }
+        }
+    }
+}
+
+
+.form__label {
+    @include wf-primary;
+    margin-bottom: $quarter-spacing-unit;
+
+    @include mq(small) {
+        margin-bottom: 0;
+        margin-right: $quarter-spacing-unit;
+    }
+}
+
+
+// If you need a little example to go with the inputs label.
+// We've used it for DOB `eg. 10/07/1991`
+.form__example {
+    @include fsz(tiny);
+    @include get-color(grey, dark);
+}
+
+
+.form__input {
+    @include form-input;
+
+    &:not(&--submit) { flex-grow: 1; }
+
+    // &--text {}
+    &--submit {
+        @include get-bgc(primary);
+        @include wf-primary;
+        border: solid 3px get-color(primary);
+        max-width: fit-content;
+        padding: 0.85rem 1.25rem;
+        transition: background ease-in-out $transition-length;
+
+        &:focus {
+            background-color: transparent;
+            outline: 0;
+        }
+        @include mq(medium) {
+            &:hover { background-color: transparent; }
+        }
+    }
+}
+
+// The error message for
+.form__err-message {
+    @include input-size;
+    @include get-color(error);
+    display: none;
+    margin-bottom: $half-spacing-unit;
+    margin-top: -($half-spacing-unit - $quarter-spacing-unit/2);
+}
+
+
+
+
+
+// ==========================================================================
+// # ELEMENT: DOB FIELDS
+// ==========================================================================
+
+.form-dob {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    @include mq($until: small) { flex-direction: column; }
+
+    // &--error { @include input-error; }
+
+    // &--error-day { @include input-dob-error; }
+    //
+    // &--error-month { @include input-dob-error; }
+    //
+    // &--error-year { @include input-dob-error; }
+}
+
+.form-dob__list {
+    display: flex;
+    max-width: 240px;
+    width: 100%;
+}
+
+.form-dob__item {
+    display: flex;
+    flex-direction: column;
+    @include remove-number-arrows;
+
+    .form__input-container--error & { @include input-dob-error; }
+
+    &:not(:last-of-type) {
+        margin-right: $quarter-spacing-unit;
+    }
+
+    &--day {
+        width: 5ch;
+
+        .form-dob--error-day & { @include input-dob-error; }
+    }
+
+
+    &--month {
+        width: 5ch;
+
+        .form-dob--error-month & { @include input-dob-error; }
+    }
+
+    &--year {
+        width: 8ch;
+
+        .form-dob--error-year & { @include input-dob-error; }
+    }
+}
+
+.form-dob__label {
+    @include get-color(black, light);
+    @include fsz(tiny);
+    @include wf-primary;
+    margin-bottom: $quarter-spacing-unit / 2;
+}
+
+.form-dob__input {
+    @include form-input;
+    padding: $quarter-spacing-unit ($quarter-spacing-unit / 2);
+
+    &--invalid { border: solid $outline-size get-color(error); }
+}
+
+
+
+
+
+// ==========================================================================
+// # ELEMENT: CUSTOM SELECT
+// ==========================================================================
+
+.form__input--select {
+    @include base-background(calc(100% - #{$quarter-spacing-unit}) 50%, 'off-white', contain);
+    @include svg-chevron(black, "background-image");
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-size: auto 35%;
+    // Removing rounded corners on Chrome
+    -webkit-border-radius: 0px;
+}
+
+
+
+
+
+// ==========================================================================
+// # ELEMENT: FORM CUSTOM ELEMENT - CHECKBOX & RADIO BUTTON
+//
+//  Here we have styles for custom radio button and checkbox.
+//  These styles are based on the technique used on WTF Forms -
+//  http://wtfforms.com.
+//
+//  <label class="form-custom-element form-custom-element--checkbox" for="checkbox">Would you like a custom element?
+//      <input class="form-custom-element__input" type="checkbox" id="checkbox" name="checkbox" value="true">
+//      <span class="form-custom-element__indicator"></span>
+//  </label>
+// ==========================================================================
+
+.form-custom-element {
+    cursor: pointer;
+    display: inline-block;
+    padding-left: $half-spacing-unit;
+    position: relative;
+
+    &:not(:last-of-type) { margin-right: $half-spacing-unit; }
+
+    // Checkbox modifiers
+    &--checkbox {
+        // ~ .form-custom-element__indicator {}
+
+        .form-custom-element__input:checked ~ .form-custom-element__indicator {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 27.02 20.56' fill='%23#{get-color-for-svg(black, light)}' %3E%3Cpath d='M9.23 20.56L6.46 17.8 0 11.33l2.77-2.76L9.23 15l15-15L27 2.77z'/%3E%3C/svg%3E%0A");
+            background-size: 62%;
+        }
+    }
+
+
+    //  Radio modifiers
+    &--radio {
+        .form-custom-element__indicator { border-radius: 50%; }
+
+        .form-custom-element__input:checked ~ .form-custom-element__indicator {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50' fill='%23#{get-color-for-svg(black, light)}' %3E%3Ccircle cx='25' cy='25' r='20'/%3E%3C/svg%3E");
+        }
+    }
+
+    // If NEEEED hover styles can add then but I'd not recommend it
+    // @include mq(medium) {
+    //     &:hover .form-custom-element__indicator {
+    //         color: #fff;
+    //         background-color: #ccc;
+    //     }
+    // }
+
+    .form__input-container--error & {
+        .form-custom-element__indicator { @include custom-form-element-outline(get-color(error)); }
+    }
+
+    .form-custom-element__input {
+        opacity: 0;
+        position: absolute;
+        /* Put the input behind the label so it doesn't overlay text */
+        z-index: -1000;
+
+        &:focus ~ .form-custom-element__indicator {
+            // @include active-input; // Can't make outline rounded
+            @include custom-form-element-outline;
+            outline: 0;
+        }
+
+        /* Checked state */
+        &:checked ~ .form-custom-element__indicator {
+            @include get-color(white);
+            @include get-bgc(primary);
+        }
+        /* Active */
+        &:active ~ .form-custom-element__indicator {
+            @include get-bgc(primary, light);
+            @include get-color(white);
+        }
+    }
+}
+
+
+.form-custom-element__indicator {
+    @include get-bgc(grey, light);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 63%;
+    display: block;
+    height: 1rem;
+    left: 0;
+    outline-offset: 2px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    user-select: none;
+    width: 1rem;
+}

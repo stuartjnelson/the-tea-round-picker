@@ -1,0 +1,23 @@
+{
+  "useConfigFiles": true,
+  "plugins": {
+    "@vue/cli-plugin-babel": {},
+    "@vue/cli-plugin-eslint": {
+      "config": "airbnb",
+      "lintOn": [
+        "save"
+      ]
+    },
+    "@ascendancyy/vue-cli-plugin-stylelint": {},
+    "@mapbox/stylelint-processor-arbitrary-tags": {},
+    "vue-svg-inline-loader": {},
+    "vue-svg-loader": {},
+    "stylelint-order" : {},
+    "stylelint-scss" : {},
+    "stylelint-selector-no-empty" : {},
+    "stylelint-z-index-value-constraint" : {}
+  },
+  "router": true,
+  "routerHistoryMode": true,
+  "cssPreprocessor": "node-sass"
+}

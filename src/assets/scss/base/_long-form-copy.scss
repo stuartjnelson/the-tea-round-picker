@@ -1,0 +1,73 @@
+// ==========================================================================
+// TYPOGRAPHY
+//
+// Description: base typography styles to apply globally
+// ==========================================================================
+
+
+// ==========================================================================
+// BASE
+// ==========================================================================
+
+
+.long-form-copy {
+    @include container($container-width-reduced);
+
+    // @TODO - review this ... Style all elements that are created in CMS..
+    *:last-child { margin-bottom: 0; }
+
+    p,
+    li, {
+        @include fsz(large);
+    }
+
+    // general element margin-bottom
+    p,
+    ul,
+    ol,
+    img { margin-bottom: $half-spacing-unit; }
+
+
+    // Single element styles
+    p { margin-top: 0; }
+
+    ul { list-style: disc; }
+
+    ol { list-style: decimal; }
+
+    li {
+        margin-bottom: $quarter-spacing-unit;
+        margin-left: $spacing-unit;
+    }
+
+    a {
+        @include link-underline;
+
+        &:focus { @include link-underline(primary, -3px); }
+
+        @include mq(medium) {
+            &:hover {
+                @include link-underline(primary, -3px);
+                transition: box-shadow $default-transition $transition-length;
+            }
+        }
+
+        &[href*="//"]:not([href*="localhost:3000"]),
+        &[href*="//"]:not([href*="staging.northernbadger.co.uk"]),
+        &[href*="//"]:not([href*="northernbadger.co.uk"]) {
+            @include link-external;
+        }
+    }
+
+    // Headings
+    // @for $i from 2 through 5 {
+    //     $map_key: $i + 4;
+    //     $key: nth(map-keys($font-sizes), $map_key);
+    //
+    //     h#{$i} {
+    //         @include fsz($key);
+    //
+    //         margin-bottom: 0.5rem;
+    //     }
+    // }
+}

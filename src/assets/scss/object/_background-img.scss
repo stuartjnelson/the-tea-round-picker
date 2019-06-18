@@ -1,0 +1,18 @@
+// ==========================================================================
+//
+// BACKGROUND IMAGE
+//
+// Description: An element with a background image. The image is normall
+//              added inline.
+//
+// ==========================================================================
+
+// ==========================================================================
+// # BASE
+// ==========================================================================
+
+.background-img { @include base-background; }
+
+.background-img--center { @include base-background(50% 50%); }
+
+.background-img--right { @include base-background(100% 0%); }

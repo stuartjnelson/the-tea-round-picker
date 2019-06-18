@@ -1,0 +1,40 @@
+{
+  "name": "the-tea-round-picker",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "lint:style": "vue-cli-service lint:style"
+  },
+  "dependencies": {
+    "core-js": "^2.6.5",
+    "fontfaceobserver": "^2.1.0",
+    "lazysizes": "^5.1.0",
+    "vue": "^2.6.10",
+    "vue-analytics": "^5.17.0",
+    "vue-router": "^3.0.3"
+  },
+  "devDependencies": {
+    "@ascendancyy/vue-cli-plugin-stylelint": "latest",
+    "@mapbox/stylelint-processor-arbitrary-tags": "latest",
+    "@vue/cli-plugin-babel": "^3.8.0",
+    "@vue/cli-plugin-eslint": "^3.8.0",
+    "@vue/cli-service": "^3.8.0",
+    "@vue/eslint-config-airbnb": "^4.0.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.1.0",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-order": "latest",
+    "stylelint-scss": "latest",
+    "stylelint-selector-no-empty": "latest",
+    "stylelint-z-index-value-constraint": "latest",
+    "vue-svg-inline-loader": "latest",
+    "vue-svg-loader": "latest",
+    "vue-template-compiler": "^2.6.10"
+  }
+}

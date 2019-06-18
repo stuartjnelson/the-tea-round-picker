@@ -1,0 +1,90 @@
+// ==========================================================================
+//
+// BUTTONS
+//
+// Description: Buttons
+//
+// ==========================================================================
+
+
+// ==========================================================================
+// # BASE
+// ==========================================================================
+
+.btn { @include btn; }
+
+
+
+
+
+// MODIFIER: DISABLED
+// ==========================================================================
+
+.btn[disabled],
+.btn-disabled,
+.btn--disabled {
+    @include btn-disabled;
+}
+
+
+
+
+
+// MODIFIER: RESET
+// ==========================================================================
+
+.btn--reset { @include btn-reset; }
+
+
+
+
+
+// MODIFIER: POSITION
+// ==========================================================================
+
+.btn--auto-bottom { margin-top: auto; }
+
+.btn--auto-right { margin-left: auto; }
+
+.btn--auto-left { margin-right: auto; }
+
+
+
+
+
+// ==========================================================================
+// # MODIFIER: BUTTON COLOR
+// ==========================================================================
+
+// See `config/_mixins.scss`
+// @mixin btn-color($color: false, $color-shade: default, $color-two: false, $color-two-shade: default) {}
+
+
+
+
+
+// ==========================================================================
+//  # MODIFIER: BTN MODIFIER GENERATOR
+// ==========================================================================
+
+@mixin btn-modifier-generator($color: false, $color-shade: default, $color-two: false, $color-two-shade: default) {
+    @if($color != false) {
+        $color-shade-modifier: "";
+
+
+        @if( $color-shade != default ) {
+            $color-shade-modifier: $color-shade + "-";
+        }
+
+
+        .btn--#{$color-shade-modifier}#{$color} {
+            @include btn-color($color, $color-shade, $color-two, $color-two-shade);
+        }
+    }
+}
+
+
+// // Manually creating color modifiers as we dont need loads
+// @include btn-modifier-generator(secondary, default, black, default);
+@include btn-modifier-generator(secondary, default, black);
+@include btn-modifier-generator(black, default, white);

@@ -1,0 +1,353 @@
+// stylelint-disablescss/dollar-variable-colon-space-after
+// ==========================================================================
+// # VARIABLES FILE.
+//
+// This should contain all variables used in the project. If there’re any
+// colours, random numbers, etc elsewhere, you’re probably doin’ it wrong =)
+// ==========================================================================
+$px-in-rem: 16;
+
+// ==========================================================================
+// # COLOURS
+//
+// These can be accessed using the get-color() function
+// ==========================================================================
+$brand-colors: (
+    primary:   (
+        light:   lighten(#ed1163, 10%),
+        default: #ed1163,
+        dark:    darken(#ed1163, 10%)
+    ),
+    secondary: (
+        default: #5cc9e0
+    ),
+    tertiary:  (
+        default: #fdb813
+    ),
+    white:     (
+        default: #ffffff
+    ),
+    black:     (
+        light:   #323232,
+        default: #000000
+    ),
+    grey:      (
+        light:   #bcc3c5,
+        default: #99a5ab,
+        dark:    #677982
+    ),
+    off-white:  (
+        default: #eff1f0
+    ),
+    transparent: (
+        default: transparent
+    ),
+    currentColor: (
+        default: currentColor
+    ),
+    error:  (
+        default: #ff0000
+    )
+);
+
+
+
+
+
+// ==========================================================================
+// # TYPE
+// ==========================================================================
+
+$base-font-size:          		16px;
+$base-font-family:        		Arial, sans-serif; // or write your own custom font-stack
+$base-line-height:        		1.5;
+$base-font-color:               #000000;
+$em-base: 				        $base-font-size;
+$slick-font-family:             $base-font-family;
+
+
+
+
+
+// Web Fonts
+// ==========================================================================
+
+// scss-lint:disable DuplicateProperty
+@mixin wf-primary {
+    //  FOUT
+    // Set font base font
+    font-family: $base-font-family;
+    font-style: normal;
+    font-weight: 400;
+
+    // If the actual font loads then use it instead
+    .webfont-1-active & {
+        font-family: 'LatoRegular', $base-font-family;
+        font-weight: 400;
+    }
+}
+
+
+@mixin wf-secondary {
+    // Set font base font
+    font-family: $base-font-family;
+    font-style: normal;
+    font-weight: 700;
+
+    // Since `webfont-1` if loaded first
+    // we fake a bold version of that
+    .webfont-1-active & {
+        font-family: 'LatoRegular', $base-font-family;
+        font-weight: 700;
+    }
+
+    // If the actual font loads then use it instead
+    .webfont-2-active & {
+        font-family: 'LatoBold', $base-font-family;
+        font-weight: 700;
+    }
+}
+
+
+// scss-lint:disable DuplicateProperty
+@mixin wf-tertiary {
+    font-family: $base-font-family;
+    font-style: normal;
+    font-weight: bold;
+}
+
+
+@mixin wf-base {
+    font-family: $base-font-family;
+    font-style: normal;
+    font-weight: normal;
+}
+
+
+
+
+
+// # FONT SIZES: for use with the fsz() mixin
+// ==========================================================================
+
+$alt-body-typeset: (
+    tiny: (
+        font-size: 12px,
+        line-height: 1.5
+    ),
+    small: (
+        font-size: 15px,
+        line-height: 1.25
+    ),
+    base: (
+        font-size: $base-font-size,
+        line-height: $base-line-height
+    ),
+    large: (
+        font-size: 19px,
+        line-height: 1.35
+    )
+);
+
+
+
+
+
+// Heading Levels
+// ==========================================================================
+
+$headings-typeset: (
+    alpha: (
+        default: (
+            font-size: 51px,
+            line-height: 1.25
+        ),
+        medium: (
+            font-size: 40px,
+            line-height: 1.25
+        )
+    ),
+    bravo: (
+        default: (
+            font-size: 29px,
+            line-height: 1.25
+        ),
+        medium: (
+            font-size: 27px,
+            line-height: 1.35
+        )
+    ),
+    charlie: (
+        default: (
+            font-size: 24px,
+            line-height: 1.25
+        ),
+        medium: (
+            font-size: 24px,
+            line-height: 1.25
+        )
+    ),
+    delta: (
+        default: (
+            font-size: $base-font-size,
+            line-height: $base-line-height
+        ),
+        medium: (
+            font-size: $base-font-size,
+            line-height: $base-line-height
+        ),
+    )
+    // echo: (
+    //     default: (
+    //         font-size: 20px,
+    //         line-height: 1.33
+    //     ),
+    //     medium: (
+    //         font-size: 20px,
+    //         line-height: 1.33
+    //     ),
+    // )
+);
+
+
+
+
+
+// # WEIGHTS: for use with fwt() mixin
+// ==========================================================================
+$font-weights: (
+    normal: normal,
+    bold:   bold
+);
+
+
+
+
+
+// ==========================================================================
+// # DIMENSIONS
+//
+// These are scalar ‘magic’ numbers used throughout the site
+// ==========================================================================
+
+$container-width: 72.5em; // 1160px-ish
+
+$container-width-reduced: 42.75; // 672px or 83-ish characters
+
+
+
+
+
+// ==========================================================================
+// # GRID
+// ==========================================================================
+
+// Include a set of standard grid breakpoints?
+$use-standard-breakpoints: 		true;
+
+// Grid configuration
+$grids: 						2 3 4 5;	// number of columns required
+
+// Gutters
+$gutter: 						3em;	 // gutter between each column in em's
+$double-gutter-width: 			($gutter*2);
+$half-gutter-width: 			($gutter/2);
+$quarter-gutter-width: 			($gutter/4);
+
+
+
+
+
+// RESPONSIVE
+// https://github.com/sass-mq/sass-mq
+// ==========================================================================
+
+// Determines whether to fix media queries
+// https://github.com/sass-mq/sass-mq#responsive-mode-off
+// $mq-responsive: if($is-oldie, false, true);
+
+
+// Define the breakpoint from the $mq-breakpoints list that should
+// be used as the target width when outputting a static stylesheet
+// (i.e. when $mq-responsive is set to 'false').
+$mq-static-breakpoint: large;
+
+
+
+
+
+// ==========================================================================
+// # BREAKPOINTS
+//
+// Breakpoints are defined using sass-mq. Note: these must be defined in px
+// ==========================================================================
+$mq-breakpoints: (
+    tiny: 	     320px,
+    nav-break-1: 540px,
+    nav-break-2: 1090px,
+    small:       640px,
+    medium:      768px,
+    large:       960px,
+    xlarge:      1280px,
+    xxlarge:     1680px
+);
+
+
+
+
+
+// ==========================================================================
+// # ANIMATIONS
+// ==========================================================================
+
+$default-transition:			linear;
+$transition-length:             0.15s;
+$half-transition-length:        $transition-length / 2;
+
+
+
+
+
+// ==========================================================================
+// # SPACING
+// ==========================================================================
+
+$spacing-unit: 					40px;
+$half-spacing-unit: 			$spacing-unit/2;
+$quarter-spacing-unit: 			$spacing-unit/4;
+$double-spacing-unit: 			$spacing-unit*2;
+
+// This is used with _band.scss by default
+$spacing-map: (
+    default: $spacing-unit,
+    quarter: $quarter-spacing-unit,
+    half   : $half-spacing-unit,
+    double : $double-spacing-unit
+);
+
+
+
+
+
+// ==========================================================================
+// # Z-INDEX
+//
+// Way of managing `z-index`
+// ==========================================================================
+
+$z-lvl-1: 1000;
+$z-lvl-2: 2000;
+$z-lvl-3: 3000;
+$z-lvl-4: 4000;
+$z-lvl-5: 5000;
+
+
+
+
+
+// Normally would import EVERYTHING in `main.scss`
+// but by importing my mixins & functions here they
+// become available globally.
+// @import "../vendor/mq";
+// @import "_mixins";
+// @import "_functions";

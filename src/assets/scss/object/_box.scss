@@ -1,0 +1,52 @@
+// ==========================================================================
+// BOX
+//
+// Description: An evenly padded element
+// ==========================================================================
+
+// ==========================================================================
+// # BASE
+// ==========================================================================
+
+.box { @include box; }
+
+.box--half { @include box($half-spacing-unit); }
+
+.box--double { @include box($double-spacing-unit); }
+
+
+
+
+
+// ==========================================================================
+// # MODIFIER: BACKGROUND COLOR
+// ==========================================================================
+
+@mixin box-color($color: false, $color-shade: default) {
+    @if($color) {
+        $color-shade-modifier: "";
+
+        @if( $color-shade != default ) {
+            $color-shade-modifier: $color-shade + "-";
+        }
+
+        // Doing this as my old technique for interpolination was
+        // throwing an error even though it was neater...
+        // .box--#{$color-shade-modifier}#{$color}
+        $class: "box--" + $color-shade-modifier + $color;
+
+        .#{$class} { @include get-bgc($color, $color-shade); }
+    }
+}
+
+@each $color, $default-shade in $brand-colors {
+    @include box-color($color);
+
+    @if( map-has-nested-keys($brand-colors, $color, light) == true) {
+        @include box-color($color, light);
+    }
+
+    @if( map-has-nested-keys($brand-colors, $color, dark) == true) {
+        @include box-color($color, dark);
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "dependencies": {
+        "vue-analytics": "^5.16.4",
+    },
+    "devDependencies": {
+        "@ascendancyy/vue-cli-plugin-stylelint": "^1.1.2",
+        "@mapbox/stylelint-processor-arbitrary-tags": "^0.2.0",
+        "stylelint-config-standard": "^18.2.0",
+        "stylelint-order": "^2.1.0",
+        "stylelint-scss": "^3.5.4",
+        "stylelint-selector-no-empty": "^1.0.7",
+        "stylelint-webpack-plugin": "^0.10.5",
+        "stylelint-z-index-value-constraint": "^1.0.0",
+        "vue-svg-inline-loader": "^1.2.15",
+        "vue-svg-loader": "^0.12.0"
+    },
+    "_comment": "// all stylelint packages comes from"
+}
