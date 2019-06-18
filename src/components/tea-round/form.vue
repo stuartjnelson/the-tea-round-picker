@@ -27,6 +27,8 @@
             addNewUser() {
                 if(this.user.length) {
                     EventBus.$emit('addUser', this.user);
+
+                    this.user = '';
                 } else {
                     this.error = true;
                 }
