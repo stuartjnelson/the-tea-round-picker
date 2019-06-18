@@ -165,6 +165,7 @@ fieldset { padding: 0; }
 
 .form__input {
     @include form-input;
+    margin-bottom: $half-spacing-unit;
 
     &:not(&--submit) { flex-grow: 1; }
 
