@@ -12,8 +12,10 @@
                     name="fade"
                     mode="out-in"
                 >
-                    <p v-if="getTeaMakersName !== undefined">
-                        Todays tea maker is <span class="text--primary">{{ getTeaMakersName }}</span>
+                    <p class="text-center" v-if="getTeaMakersName !== undefined">
+                        Todays tea maker is <span class="text--success">{{ getTeaMakersName }}</span>
+                        <br>
+                        They have made <span class="text--success">{{ teaMaker.numberRoundsMade }}</span> {{ getTeaMakersRoundCount }} of tea
                     </p>
                 </transition>
             </div>
@@ -55,9 +57,28 @@
         computed: {
             getTeaMakersName() {
                 return this.teaMaker.name;
+            },
+            getTeaMakersRoundCount() {
+                const roundCount = this.teaMaker.numberRoundsMade;
+
+                return (roundCount === 1 ? 'round ' : 'rounds');
+            }
+        },
+        methods: {
+            getUsersFromLocalStorage() {
+                const lsUsers = JSON.parse(localStorage.getItem('users'));
+
+                if(lsUsers.length) {
+                    this.users = lsUsers;
+                }
+            },
+            setUsersInLocalStorage() {
+                localStorage.setItem('users', JSON.stringify(this.users));
             }
         },
         created() {
+            this.getUsersFromLocalStorage();
+
             // @TODO: Check if user name exists
             EventBus.$on('addUser', userName => {
                 // 1. Getting number of users
@@ -70,18 +91,32 @@
                 // 2. Adding user to users array
                 this.users.push({
                     id,
-                    name: userName
+                    name: userName,
+                    numberRoundsMade: 0
                 });
+
+                // 3. Adding users to localStorage.
+                // @TODO: This should be encypted
+                this.setUsersInLocalStorage();
             });
 
 
             EventBus.$on('removeUser', userId => {
+                // 1. Filtering through users to remove user with `userId`
                 this.users = this.users.filter(user => user.id !== userId);
+
+                // const lsUsers = JSON.parse(localStorage.getItem('users'));
+                // lsUsers.splice(userId, 1);
+                this.setUsersInLocalStorage();
             });
 
 
             EventBus.$on('chooseTeaMaker', userId => {
+                // 1. Looping through users to find user with `userId`
                 this.teaMaker = this.users.find(user => user.id === userId);
+
+                // 2. Adding one to the users rounds made total
+                this.teaMaker.numberRoundsMade += 1;
             });
         }
     };
