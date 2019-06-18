@@ -33,6 +33,8 @@
 </template>
 
 <script>
+    import { EventBus } from '@/event-bus';
+
     import Banner from '@/components/shared/Banner.vue';
     import Footer from '@/components/shared/Footer.vue';
 
@@ -59,11 +61,28 @@
             getTeaMakersName() {
                 return this.teaMaker.name;
             }
+        },
+        created() {
+            // @TODO: Check if user name exists
+            EventBus.$on('addUser', userName => {
+                // debugger;
+                const id = this.users.length;
+
+                this.users.push({
+                    id,
+                    name: userName
+                });
+            });
+
+
+            EventBus.$on('removeUser', userId => {
+                this.users = this.users.filter(user => user.id !== userId);
+            });
         }
     };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     .fade-enter-active,
     .fade-leave-active {
         transition-duration: 0.5s;
