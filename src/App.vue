@@ -2,12 +2,29 @@
     <main id="app" class="app">
         <app-banner></app-banner>
 
+        <section class="band band--off-white">
+            <div class="app__hero">
+                <header>
+                    <h1 class="heading--alpha heading--center landmark">The Tea Round Picker</h1>
+                </header>
+
+                <transition
+                    name="fade"
+                    mode="out-in"
+                >
+                    <p v-if="getTeaMakersName !== undefined">
+                        Todays tea maker is <span class="text--primary">{{ getTeaMakersName }}</span>
+                    </p>
+                </transition>
+            </div>
+        </section>
+
         <div class="app__content">
             <transition
                 name="fade"
                 mode="out-in"
             >
-                <router-view />
+                <router-view :users="users" />
             </transition>
         </div>
 
@@ -23,10 +40,26 @@
     import '@/assets/scss/main.scss';
 
     export default {
+        data() {
+            return {
+                users: [
+                    {
+                        id: 0,
+                        name: 'Alli'
+                    }
+                ],
+                teaMaker: {}
+            };
+        },
         components: {
             appBanner: Banner,
             appFooter: Footer,
         },
+        computed: {
+            getTeaMakersName() {
+                return this.teaMaker.name;
+            }
+        }
     };
 </script>
 
@@ -44,4 +77,10 @@
     }
 
     .app__content { @include container; }
+
+    .app__hero {
+        @include container;
+        @include flex-col(center, center);
+        min-height: 50vh;
+    }
 </style>
