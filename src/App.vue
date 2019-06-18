@@ -44,12 +44,7 @@
     export default {
         data() {
             return {
-                users: [
-                    {
-                        id: 0,
-                        name: 'Alli'
-                    }
-                ],
+                users: [],
                 teaMaker: {}
             };
         },
@@ -65,8 +60,12 @@
         created() {
             // @TODO: Check if user name exists
             EventBus.$on('addUser', userName => {
-                // debugger;
-                const id = this.users.length;
+                // 1. Getting number of users
+                const numberUsers = this.users.length;
+
+                // 2. If not the first users then get the id of the last users to be
+                //    created and add 1. The reason being it keeps each users ID unique.
+                const id = (numberUsers === 0 ? 0 : this.users[numberUsers - 1].id + 1);
 
                 this.users.push({
                     id,
