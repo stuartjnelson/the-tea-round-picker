@@ -9,9 +9,6 @@
                         <img svg-inline class="banner__nav-icon" src="@/assets/img/svg/shared/logo.svg" />
                     </a>
                 </router-link>
-                <router-link class="banner__nav-item" tag="li" :to="{name: 'page'}">
-                    <a class="banner__nav-link">Page</a>
-                </router-link>
             </ul>
         </nav>
     </header>
