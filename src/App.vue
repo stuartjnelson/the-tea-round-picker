@@ -68,7 +68,7 @@
             getUsersFromLocalStorage() {
                 const lsUsers = JSON.parse(localStorage.getItem('users'));
 
-                if(lsUsers.length) {
+                if(lsUsers !== null) {
                     this.users = lsUsers;
                 }
             },
